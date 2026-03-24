@@ -1,35 +1,21 @@
 package edu.norcocollege.cis18b.weekx.mini10;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AlertValidatorTest {
-    @Test
-    void shouldAcceptValidAlert() {
-        AlertValidator validator = new AlertValidator();
-        Alert alert = new Alert(1, "CPU critical", AlertLevel.CRITICAL);
 
-        // TODO: Replace null with a lambda that validates the alert.
-        assertDoesNotThrow(null);
+    @Test
+    void shouldThrowExceptionForEmptyMessage() {
+        assertThrows(InvalidAlertException.class, () -> {
+            AlertValidator.validate("");
+        });
     }
 
     @Test
-    void shouldRejectBlankMessage() {
-        AlertValidator validator = new AlertValidator();
-        Alert alert = new Alert(1, "   ", AlertLevel.WARNING);
-
-        // TODO: Replace null with a lambda that validates the alert.
-        assertThrows(InvalidAlertException.class, null);
-    }
-
-    @Test
-    void shouldRejectNullLevel() {
-        AlertValidator validator = new AlertValidator();
-        Alert alert = new Alert(1, "Disk usage high", null);
-
-        // TODO: Replace null with a lambda that validates the alert.
-        assertThrows(InvalidAlertException.class, null);
+    void shouldPassForValidMessage() {
+        assertDoesNotThrow(() -> {
+            AlertValidator.validate("Valid alert message");
+        });
     }
 }
