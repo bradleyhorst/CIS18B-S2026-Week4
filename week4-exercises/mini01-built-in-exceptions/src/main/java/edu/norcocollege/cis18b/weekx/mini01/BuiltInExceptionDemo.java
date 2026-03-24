@@ -1,18 +1,20 @@
-package edu.norcocollege.cis18b.weekx.mini01;
+public static void main(String[] args) {
+    int numerator = 10;
+    int denominator = 0;
+    String[] alerts = {"CPU High", "Disk Full", "Login Failure"};
 
-public class BuiltInExceptionDemo {
-    public static void main(String[] args) {
-        int numerator = 10;
-        int denominator = 0;
-        String[] alerts = {"CPU High", "Disk Full", "Login Failure"};
-
-        // TODO: Use try/catch to handle division by zero.
-        // Expected friendly message example: Cannot divide by zero.
-
-        // TODO: Use try/catch to handle an invalid alert index.
-        // Purposely try an out-of-range index so the catch block runs.
-        // Expected friendly message example: Invalid alert index.
-
-        System.out.println("Program completed.");
+    try {
+        int result = numerator / denominator;
+        System.out.println("Result: " + result);
+    } catch (ArithmeticException e) {
+        System.out.println("Cannot divide by zero.");
     }
+
+    try {
+        System.out.println(alerts[5]);
+    } catch (ArrayIndexOutOfBoundsException e) {
+        System.out.println("Invalid alert index.");
+    }
+
+    System.out.println("Program completed.");
 }
