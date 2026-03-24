@@ -1,6 +1,7 @@
 package edu.norcocollege.cis18b.weekx.mini09;
 
 public class LoggingAlertHandlerDecorator implements AlertHandler {
+
     private final AlertHandler wrapped;
 
     public LoggingAlertHandlerDecorator(AlertHandler wrapped) {
@@ -9,8 +10,10 @@ public class LoggingAlertHandlerDecorator implements AlertHandler {
 
     @Override
     public void handle(Alert alert) {
-        // TODO: Print a message before delegating.
-        // TODO: Call the wrapped handler.
-        // TODO: Print a message after delegating.
+        System.out.println("Logging alert before handling: " + alert.getMessage());
+
+        wrapped.handle(alert);
+
+        System.out.println("Logging alert after handling: " + alert.getMessage());
     }
 }
